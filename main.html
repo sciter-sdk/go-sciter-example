@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>Harmony</title>
+                <!-- style definitions -->
+            <style>
+                        body{
+                            padding: 0;
+                            margin: 0;
+                            background-color: rgb(243, 242, 230)
+                        }         
+                        h1 {
+                            padding-top: 110px;
+                            text-align: center
+                        }
+                        .sidebar{
+                            position: absolute;
+                            top:0;
+                            left: 0;
+                            height: 100%;
+                            width: 150;
+                            color:#fff;
+                            background-color: rgb(41, 40, 32);
+                            padding:10;
+                        }
+            
+                        .button{
+                            background-color:   rgb(65, 63, 47);
+                            width: 100%;
+                            text-align: center;
+                            margin: 5 0;
+                            padding: 5 0;
+                            border-radius:  3px;
+                            box-shadow: 2px 2px 2px  rgb(112, 107, 70);
+                        }
+            
+                        .button:hover{
+                            background-color:   rgb(112, 107, 70);
+                        }
+            </style>            
+          
+    </head>
+    <body>
+
+        <!-- Sidebar defined here -->
+        <div class="sidebar">
+            <nav>
+                <li class="button" id="bt2">Link2</li>
+                <li class="button">Link3</li>
+                <li class="button">Link4</li>
+            </nav>
+        </div>
+
+        <!-- Page content definition-->
+        <h1>
+            Harmony
+            <textarea id="txtzone"></textarea>
+
+        </h1>
+
+        <!-- TIScripts -->
+        <script type="text/tiscript">
+            var root = view.root;
+            self.$(#bt2).on("click", function() {     
+                this.tester(self.$(#txtzone.value()),"hello")         
+                view.msgbox("Warning","You have clicked","close this popup")
+            })           
+        </script>
+     
+    </body>
+</html>
