@@ -57,7 +57,9 @@
 
        <script type="text/tiscript">
            var root = view.root;
-            self
+            self.btn.on("click", function(){
+                view.msgbox("you clicked on ", this.text)
+            })
        </script>
     </body>
 </html>
