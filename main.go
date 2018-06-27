@@ -22,7 +22,7 @@ func main() {
 		color.RedString("Failed to load ui file ", uiLoadingError.Error())
 	}
 
-	window.DefineFunction("Gretting", gretfunc)
+	window.DefineFunction("Sum", Sum)
 
 	// Setting up stage for Harmony
 	window.SetTitle("Simple Input")
@@ -31,9 +31,14 @@ func main() {
 
 }
 
-func gretfunc(vals ...*sciter.Value) *sciter.Value {
+func Sum(vals ...*sciter.Value) *sciter.Value {
+	sumval := 0
 	for _, val := range vals {
-		fmt.Println(val.String())
+		sumval += val.Int()
+		fmt.Println(val.Int())
 	}
-	return nil
+	fmt.Println("summation is ", sumval)
+	// sumString := fmt.Sprintf("%v", sumval)
+
+	return sciter.NewValue(sumval)
 }

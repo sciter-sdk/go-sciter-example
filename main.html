@@ -5,14 +5,44 @@
     </head>
     <body>
        <h1>Simple Input</h1>  
-       <label for="">Your Name</label></br>
-       <input type="text" #name>
-       <button #btn1 >That's My Name</button>
+
+       <table>
+           <tr>
+               <td>
+                   <label for="">Input1</label>
+               </td>
+               <td>
+                   <input type="text" #n1>
+               </td>               
+           </tr>
+           <tr>
+                <td>
+                    <label for="">Input2</label>
+                </td>
+                <td>
+                    <input type="text" #n2>
+                </td>               
+            </tr>
+            <tr>
+                <td>
+                    <label for="">Sum</label>
+                </td>
+                <td>
+                    <label for="" #sum></label>
+                </td>               
+            </tr>   
+            <tr>
+                <td> <button #btn1 >Get Sum Up</button></td>
+            </tr>
+       </table>
+      
+
+      
 
        <script type="text/tiscript">
            var root = view.root;
            self#btn1.on("click", function(){
-               view.Gretting(self#name.text)
+              self#sum.text = view.Sum(toInteger(self#n1.text), toInteger(self#n2.text)) 
            })
        </script>
     </body>
