@@ -9,6 +9,7 @@
        <input type="text" #name>
        <button #btn1 >That's My Name</button>
        <script type="tiscript">
+            var root = view.root;
            self#btn1.on("click", function(){
                view.msgbox("hello ", self#name.text)
            })
