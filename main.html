@@ -7,32 +7,48 @@
        <h1>Simple Input</h1>  
 
        <table>
-           <tr>
-               <td>
-                   <label for="">Input1</label>
-               </td>
-               <td>
-                   <input type="text" #n1>
+           <tr>            
+               <td  colspan="3" >
+                   <input type="text" #input>
                </td>               
            </tr>
            <tr>
                 <td>
-                    <label for="">Input2</label>
+                    <button .btn >1</button>
                 </td>
                 <td>
-                    <input type="text" #n2>
-                </td>               
+                    <button .btn >2</button>
+                </td>    
+                <td>
+                    <button .btn >3</button>
+                </td>             
             </tr>
             <tr>
                 <td>
-                    <label for="">Sum</label>
+                    <button .btn >4</button>
                 </td>
                 <td>
-                    <label for="" #sum></label>
-                </td>               
-            </tr>   
+                    <button .btn >5</button>
+                </td>    
+                <td>
+                    <button .btn >6</button>
+                </td>           
+            </tr>  
             <tr>
-                <td> <button #btn1 >Get Sum Up</button></td>
+                <td>
+                    <button .btn >7</button>
+                </td>
+                <td>
+                    <button .btn >8</button>
+                </td>    
+                <td>
+                    <button .btn >9</button>
+                </td>           
+            </tr>  
+
+            <tr>
+                <td colspan="2">0</td>
+                <td><button #btn1 >Get Sum Up</button></td>
             </tr>
        </table>
       
@@ -41,9 +57,7 @@
 
        <script type="text/tiscript">
            var root = view.root;
-           self#btn1.on("click", function(){
-              self#sum.text = view.Sum(toInteger(self#n1.text), toInteger(self#n2.text)) 
-           })
+            self
        </script>
     </body>
 </html>
