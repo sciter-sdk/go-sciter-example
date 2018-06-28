@@ -114,16 +114,18 @@
                     case "=":{
                         // view.Operate(toInteger(current),toInteger(self#input.text),"=");   
                         current = self#input.text
+                        if (opr != "_"){
                         result = view.Operate(toInteger(result),toInteger(current),opr);                      
                         self#input.text = result
+                        opr = "_"
                         prev = "="          
+                        }
                         break;
                     }
                     default:{
                         if (prev == "+" || prev == "-"  || prev == "/" 
-                            || prev == "*"  ||prev == "=") {
-                      
-                            //view.msgbox("resetting input box")
+                            || prev == "*"  ||prev == "=") {                      
+                            // view.msgbox("resetting input box")
                             self#input.text = this.text       
                             prev = self#this.text                    
                         }else{                         
