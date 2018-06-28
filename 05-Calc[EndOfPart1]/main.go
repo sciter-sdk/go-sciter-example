@@ -22,7 +22,7 @@ func main() {
 		color.RedString("Failed to load ui file ", uiLoadingError.Error())
 	}
 
-	window.DefineFunction("Sum", Sum)
+	window.DefineFunction("Operate", Operate)
 
 	// Setting up stage for Harmony
 	window.SetTitle("Simple Input")
@@ -31,11 +31,29 @@ func main() {
 
 }
 
-func Sum(vals ...*sciter.Value) *sciter.Value {
+func Operate(vals ...*sciter.Value) *sciter.Value {
 	sumval := 0
-	for _, val := range vals {
-		sumval += val.Int()
-		fmt.Println(val.Int())
+	switch vals[2].String() {
+	case "+":
+		{
+			sumval = vals[0].Int() + vals[1].Int()
+		}
+	case "-":
+		{
+			sumval = vals[0].Int() - vals[1].Int()
+		}
+	case "*":
+		{
+			sumval = vals[0].Int() * vals[1].Int()
+		}
+	case "/":
+		{
+			sumval = vals[0].Int() / vals[1].Int()
+		}
+	default:
+		{
+			fmt.Println("undefined opertaion", vals[2].String())
+		}
 	}
 	fmt.Println("summation is ", sumval)
 	// sumString := fmt.Sprintf("%v", sumval)

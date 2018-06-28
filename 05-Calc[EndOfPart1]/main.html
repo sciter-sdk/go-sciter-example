@@ -5,10 +5,9 @@
     </head>
     <body>
        <h1>Simple Input</h1>  
-
        <table>
            <tr>            
-               <td  colspan="3" >
+               <td  colspan="4" >
                    <input type="text" #input>
                </td>               
            </tr>
@@ -21,7 +20,10 @@
                 </td>    
                 <td>
                     <button .btn >3</button>
-                </td>             
+                </td>   
+                <td>
+                    <button .btn >+</button>
+                </td>            
             </tr>
             <tr>
                 <td>
@@ -32,7 +34,10 @@
                 </td>    
                 <td>
                     <button .btn >6</button>
-                </td>           
+                </td>  
+                <td>
+                    <button .btn >-</button>
+                </td>          
             </tr>  
             <tr>
                 <td>
@@ -43,23 +48,93 @@
                 </td>    
                 <td>
                     <button .btn >9</button>
-                </td>           
+                </td>   
+                <td>
+                    <button .btn >*</button>
+                </td>         
             </tr>  
 
             <tr>
                 <td colspan="2">0</td>
-                <td><button #btn1 >Get Sum Up</button></td>
+                <td><button .btn>=</button></td>
+                <td>
+                    <button .btn >/</button>
+                </td> 
             </tr>
        </table>
-      
-
-      
+       <p> Previous Press <label for="" #prev></label></p>
 
        <script type="text/tiscript">
-           var root = view.root;
-            self.btn.on("click", function(){
-                view.msgbox("you clicked on ", this.text)
+            
+            var root = view.root;
+            var current = 0;
+            var result = 0;
+            var opr = ""
+            var prev  = "0"; 
+            self.on("click",".btn", function(){
+                  
+                stdout.println("text", current);
+;               current = self#input.text;
+
+                switch (this.text){                  
+                    case "+":{
+                        // result = view.Operate(toInteger(current),toInteger(result),"+");
+                        opr = "+"
+                        self#input.text = ""   
+                        prev = "+"                    
+                        break;
+                    }
+                    case "-":{
+                        // result = view.Operate(toInteger(current),toInteger(result),"-");
+                        self#input.text = ""    
+                        opr = "-"  
+                        prev = "-"                 
+                        break;
+                    }
+                    case "*":{
+                        if (current == 0){
+                            current = 1
+                        }
+                        // result = view.Operate(toInteger(current),toInteger(result),"*");
+                        opr = "*"
+                        self#input.text = ""       
+                        prev = "*"                
+                        break;
+                    }
+                    case "/":{
+                        if (current == 0){
+                            current = 1
+                        }
+                        // result = view.Operate(toInteger(current),toInteger(result),"/");
+                        opr = "/"
+                        self#input.text = ""     
+                        prev = "/"                   
+                        break;
+                    }
+                    case "=":{
+                        // view.Operate(toInteger(current),toInteger(self#input.text),"=");   
+                        current = self#input.text
+                        result = view.Operate(toInteger(result),toInteger(current),opr);                      
+                        self#input.text = result
+                        prev = "="          
+                        break;
+                    }
+                    default:{
+                        if (prev == "+" || prev == "-"  || prev == "/" 
+                            || prev == "*"  ||prev == "=") {
+                      
+                            //view.msgbox("resetting input box")
+                            self#input.text = this.text       
+                            prev = self#this.text                    
+                        }else{                         
+                            self#input.text = self#input.text + this.text;
+                            prev = self#this.text
+                        }
+                    }
+                }
+                stdout.println("text", current);  
             })
        </script>
+
     </body>
 </html>
