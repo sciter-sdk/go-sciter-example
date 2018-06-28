@@ -1,0 +1,111 @@
+<html>
+    <head>       
+        <style>          
+        </style>
+    </head>
+    <body>
+       <h1>Simple Input</h1>  
+
+       <table>
+           <tr>            
+               <td  colspan="3" >
+                   <input type="text" #input style="text-align: right">
+               </td>               
+           </tr>
+           <tr>
+                <td>
+                    <button .btn >1</button>
+                </td>
+                <td>
+                    <button .btn >2</button>
+                </td>    
+                <td>
+                    <button .btn >3</button>
+                </td>  
+                <td>
+                    <button .btn >+</button>
+                </td>              
+            </tr>
+            <tr>
+                <td>
+                    <button .btn >4</button>
+                </td>
+                <td>
+                    <button .btn >5</button>
+                </td>    
+                <td>
+                    <button .btn >6</button>
+                </td>  
+                <td>
+                    <button .btn >-</button>
+                </td>           
+            </tr>  
+            <tr>
+                <td>
+                    <button .btn >7</button>
+                </td>
+                <td>
+                    <button .btn >8</button>
+                </td>    
+                <td>
+                    <button .btn >9</button>
+                </td>   
+                <td>
+                    <button .btn >/</button>
+                </td>          
+            </tr>  
+
+            <tr>
+                <td colspan="2">
+                    <button .btn >0</button>
+                </td>   
+                <td>
+                    <button .btn >*</button>
+                </td>  
+                <td><button .btn >=</button></td>
+            </tr>
+       </table>
+       <script type="text/tiscript">
+            var root = view.root;
+            var currentVal = 0;
+            self.on("click", ".btn",function(){
+                switch (this.text){
+                    case "+":{
+                        currentVal = view.Calc(toInteger(self#input.text),toInteger(currentVal),"+")
+                        self#input.text = ""
+                        break;
+                    }
+                    case "-":{
+                        currentVal = view.Calc(toInteger(self#input.text),toInteger(currentVal),"-")
+                        self#input.text = ""
+                        break;
+                    }
+                    case "=":{
+                        self#input.text = currentVal                        
+                        break;
+                    }
+                    case "/":{
+                        if (currentVal == 0) {
+                            currentVal = 1
+                        }
+                        currentVal = view.Calc(toInteger(self#input.text),toInteger(currentVal),"/")
+                        self#input.text = ""
+                        break;
+                    }
+                    case "*":{
+                        if (currentVal == 0) {
+                            currentVal = 1
+                        }
+                        currentVal = view.Calc(toInteger(self#input.text),toInteger(currentVal),"*")
+                        self#input.text = ""
+                        break;
+                    }                 
+                    default: {
+                        self#input.text = self#input.text + this.text
+                    }
+                }              
+               
+            })
+       </script>
+    </body>
+</html>
