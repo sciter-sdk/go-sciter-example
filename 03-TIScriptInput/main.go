@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/fatih/color"
 	"github.com/sciter-sdk/go-sciter"
 	"github.com/sciter-sdk/go-sciter/window"
@@ -22,18 +20,9 @@ func main() {
 		color.RedString("Failed to load ui file ", uiLoadingError.Error())
 	}
 
-	window.DefineFunction("Gretting", gretfunc)
-
 	// Setting up stage for Harmony
 	window.SetTitle("Simple Input")
 	window.Show()
 	window.Run()
 
-}
-
-func gretfunc(vals ...*sciter.Value) *sciter.Value {
-	for _, val := range vals {
-		fmt.Println(val.String())
-	}
-	return nil
 }
