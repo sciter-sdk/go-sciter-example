@@ -31,6 +31,8 @@ func main() {
 
 }
 
+// Sum function we want to call on the input 
+// from TIScript
 func Sum(vals ...*sciter.Value) *sciter.Value {
 	sumval := 0
 	for _, val := range vals {
