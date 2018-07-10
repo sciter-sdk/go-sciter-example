@@ -1,6 +1,6 @@
 # About Repository
 
-Creating gui application with golang something nightmare before sometime[ untill i found sciter sdk wrapper for Golang] for me.  There is very less amount of resouce available for go-sciter. So I am sharing this examples to give some contribution to create resource.
+Creating gui application with golang something nightmare before sometime[ until i found sciter sdk wrapper for Golang] for me.  There is very less amount of resource available for go-sciter. So I am sharing this examples to give some contribution to create resource.
 
 ## About Programs
 
@@ -16,10 +16,13 @@ Hello world equivilate program for sciter. Just to get you excited by showing wi
 TIScript is  extended version of JavaScript. This program contains small portion of TIScript to introduce TIScript. 
 
 #### 03-TIScriptInput
-Moving one step forward in TIScript. This progrm shows how to access data from html inputs using TIScript.
+Moving one step forward in TIScript. This program shows how to access data from html inputs using TIScript.
 
 #### 04-CallGoFunctionFromTIscript
 Once you get input from HTML elements you may need to call a goLang function and process input. This program is simplest example of taking input from html via TIScript passing that data to goLang function and updating output on HTML element.
 
 #### 05-Calc[EndOfPart1]
-Summation of the journy uptill.  It's a very simple calc which uses every thing we learn in earlier examples.
+Summation of the journey until.  It's a very simple calc which uses every thing we learn in earlier examples.
+
+#### 06-BuiltinHTML
+It's not good if you have to load external html file. As you have to care about location of html file. But instead what if html is inside your gocode? . It's cool right!. This is examples is about how to embedded html in your go code.

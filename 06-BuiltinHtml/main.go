@@ -7,13 +7,6 @@ import (
 	"github.com/sciter-sdk/go-sciter/window"
 )
 
-var (
-	// Version of application
-	Version = "1.0.0"
-	// BuildTime Of application
-	BuildTime = "2018-07-06"
-)
-
 func main() {
 
 	// Creating A Reactangle of size we want
@@ -27,13 +20,11 @@ func main() {
 		fmt.Errorf("Failed to create application window due to %s ", windowErr.Error())
 		return
 	}
-
-	uiLoadErr := appWindow.LoadHtml(screens(0), "/")
+	uiLoadErr := appWindow.LoadHtml(screens(), "/")
 	if uiLoadErr != nil {
 		fmt.Errorf("Failed to Load UI dur to %s ", uiLoadErr.Error())
 		return
 	}
-
 	appWindow.SetTitle("Score")
 	// Showing window on screen
 	appWindow.Show()
@@ -42,10 +33,8 @@ func main() {
 
 }
 
-func screens(i int) string {
-
-	if i == 1 {
-		return `
+func screens() string {
+	return `
 		<html window-icon="./sciter.png">
 			<head>
 			</head>
@@ -61,13 +50,6 @@ func screens(i int) string {
 					self#nameLabel.text = self#name.text			
 				})
 			</script>
-		</html>
-	`
-	}
-	return `
-		<html>
-		<body> <h1> ! Sorry , Something went wrong " 
-		<a href="/home"> Retry </a>
 		</html>
 	`
 }
