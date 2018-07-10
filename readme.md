@@ -5,6 +5,7 @@ Creating gui application with golang something nightmare before sometime[ untill
 ## About Programs
 
 No one is perfect in this world, so how one can create perfect things. Program written by me may be written in some another[ far better ] way. If you found something like that please make a pull request. I will be happy to review and merge it.
+I have explained almost all program listed below on my blog  [ link to my blog ] (https://go-sciter.mchampaneri.in)
 
 ## List of programs 
 
