@@ -28,7 +28,7 @@ func main() {
 		return
 	}
 
-	uiLoadErr := appWindow.LoadHtml(screens(), "/")
+	uiLoadErr := appWindow.LoadHtml(screens(0), "/")
 	if uiLoadErr != nil {
 		fmt.Errorf("Failed to Load UI dur to %s ", uiLoadErr.Error())
 		return
@@ -42,22 +42,32 @@ func main() {
 
 }
 
-func screens() string {
-	return `
+func screens(i int) string {
+
+	if i == 1 {
+		return `
 		<html window-icon="./sciter.png">
 			<head>
 			</head>
 			<body>
 				<h1> No Html Files Need Any More </h1>
-				<input #name>
-				<label #nameLabel>
+				<input #name />
+				<label #nameLabel> </label>
+				<br>
 				<button #myname> Click Me  !</button>
 			</body>
-			<script type="text/tiscript">
+			<script type="text/tiscript">			
 				self#myname.on("click",function(){							
 					self#nameLabel.text = self#name.text			
 				})
 			</script>
+		</html>
+	`
+	}
+	return `
+		<html>
+		<body> <h1> ! Sorry , Something went wrong " 
+		<a href="/home"> Retry </a>
 		</html>
 	`
 }
