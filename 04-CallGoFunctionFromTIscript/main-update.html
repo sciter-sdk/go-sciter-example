@@ -1,0 +1,56 @@
+<!-- 
+  Changes according to suggestions from Andrew 
+-->
+<html>
+    <head>       
+        <style>          
+        </style>
+    </head>
+    <body>
+       <h1>Simple Input</h1>  
+
+       <table>
+           <tr>
+               <td>
+                   <label for="">Input1</label>
+               </td>
+               <td>
+                <!-- You can use input syntax like this for input
+                <input|[input type][(name-you-want-give)] #[id-you-want-assign] .[class-you-want-to-assign] value="somevalue">
+                 -->
+                   <input|integer #n1>
+               </td>               
+           </tr>
+           <tr>
+                <td>
+                    <label for="">Input2</label>
+                </td>
+                <td>
+                    <input|integer #n2>
+                </td>               
+            </tr>
+            <tr>
+                <td>
+                    <label for="">Sum</label>
+                </td>
+                <td>
+                    <label for="" #sum></label>
+                </td>               
+            </tr>   
+            <tr>
+                <td> <button #btn1 >Get Sum Up</button></td>
+            </tr>
+       </table>          
+
+       <script type="text/tiscript">
+           var root = view.root;
+           self#btn1.on("click", function(){    
+               // In previous code we are converting text first to integer
+               // but as now we have set type of input to integer there
+               // is no longer need to convert text to integer
+               // sciter takes care of it itself.         
+              self#sum.text = view.Sum(self#n1.text, self#n2.text) 
+           })
+       </script>
+    </body>
+</html>

@@ -1,0 +1,100 @@
+<!-- 
+  GUI code From  Andrew Fedoniouk
+  " Thanks for this example code Andrew "
+-->
+<html>
+    <head>       
+        <style>          
+
+          html { background:transparent; }
+
+          div#buttons {
+            flow: grid( 1  1  1  1,
+                        3  4  5  12,
+                        6  7  8  13,
+                        9  10 11 14,
+                        2  16 16 15 );  
+            border-spacing:10dip; 
+            size:*;            
+          }
+
+          div#buttons > * {
+            display:block;
+            size:*;
+            min-height:2em;
+            font-size: 4vh;
+          }
+
+        </style>
+    </head>
+    <body>
+       <h1>Simple Input</h1>  
+
+       <div#buttons>
+         <input|text #input>     <!-- 1 --> 
+         <button.btn>0</button>  <!-- 2 --> 
+         <button.btn>1</button>  <!-- 3 -->        
+         <button.btn>2</button>  <!-- 4 -->        
+         <button.btn>3</button>  <!-- 5 -->        
+         <button.btn>4</button>  <!-- 6 -->        
+         <button.btn>5</button>  <!-- 7 -->        
+         <button.btn>6</button>  <!-- 8 -->        
+         <button.btn>7</button>  <!-- 9 -->        
+         <button.btn>8</button>  <!-- 10 -->        
+         <button.btn>9</button>  <!-- 11 -->
+         <button.op>+</button>   <!-- 12 -->
+         <button.op>-</button>   <!-- 13 -->
+         <button.op>*</button>   <!-- 14 -->
+         <button.op>/</button>   <!-- 15 -->
+         <button.op>=</button>   <!-- 16 -->
+       </div>
+
+       <p> Previous Press <label for="" #prev></label></p>
+
+       <script type="text/tiscript">
+            
+            var root = view.root;
+            var current = 0;
+            var result = 0;
+            var opr = ""
+            var prev  = "0"; 
+
+            event click $(button.op) {
+                stdout.println("text", current);
+                current = self#input.text;
+
+                switch (this.text)
+                {                  
+                    case "+":  opr = "+"; self#input.text = ""; prev = "+"; break;
+                    case "-":  opr = "-"; self#input.text = ""; prev = "-"; break;
+                    case "*":  if (current == 0) current = 1; 
+                               opr = "*"; self#input.text = ""; prev = "*"; break;
+                    case "/":  if (current == 0) current = 1;
+                               opr = "/"; self#input.text = ""; prev = "/"; break;
+
+                    case "=":  current = self#input.text
+                        if (opr != "_") {
+                          result = view.Operate(toInteger(result),toInteger(current),opr);                      
+                          self#input.text = result;
+                          opr = "_";
+                          prev = "=";          
+                        }
+                        break;
+                }                    
+            }
+            
+            event click $(button.btn)
+            {
+              if (prev == "+" || prev == "-"  || prev == "/" || prev == "*"  ||prev == "=") {
+                self#input.text = this.text       
+                prev = self#this.text                    
+              } else {                         
+                self#input.text = self#input.text + this.text;
+                prev = self#this.text
+              }
+              stdout.println("text", current);  
+            }
+       </script>
+
+    </body>
+</html>
