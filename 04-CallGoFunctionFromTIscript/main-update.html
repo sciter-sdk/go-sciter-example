@@ -8,7 +8,6 @@
     </head>
     <body>
        <h1>Simple Input</h1>  
-
        <table>
            <tr>
                <td>
@@ -43,14 +42,9 @@
        </table>          
 
        <script type="text/tiscript">
-           var root = view.root;
-           self#btn1.on("click", function(){    
-               // In previous code we are converting text first to integer
-               // but as now we have set type of input to integer there
-               // is no longer need to convert text to integer
-               // sciter takes care of it itself.         
-              self#sum.text = view.Sum(self#n1.text, self#n2.text) 
-           })
+           event click $(#btn1){
+             self#sum.text = view.Sum(self#n1.text, self#n2.text) 
+           }
        </script>
     </body>
 </html>

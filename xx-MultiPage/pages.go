@@ -3,7 +3,7 @@ package main
 func screens(i int) string {
 	if i == 1 {
 		return `
-		<html window-icon="./sciter.png">
+		<html window-icon="./sciter.png" >
 			<head>
 			</head>
 			<body>
@@ -14,7 +14,7 @@ func screens(i int) string {
 	}
 
 	return `
-		<html window-icon="./sciter.png">
+		<html window-icon="./sciter.png" >
 			<head>
 			</head>
 			<body>

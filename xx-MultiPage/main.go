@@ -31,11 +31,8 @@ func main() {
 	}
 
 	appWindow.DefineFunction("changePage", changepage)
-
 	appWindow.SetTitle("Score")
-	// Showing window on screen
 	appWindow.Show()
-	// Making window Running ...
 	appWindow.Run()
 
 }

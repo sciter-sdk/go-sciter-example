@@ -7,15 +7,14 @@
        <h1>Simple Input</h1>  
        <!--- Taking Input From User -->
        <label for="">Your Name</label></br>
-       <input type="text" #name>
+       <input|text #name>
        <!--/ Taking Input From User-->
        <button #btn1 >That's My Name</button>
 
        <script type="text/tiscript">
-           var root = view.root;
-           self#btn1.on("click", function(){
-               view.msgbox(self#name.text)
-           })
+           event click $(#btn1){
+               view.msgbox("Hi "+ self#name.text)
+           }
        </script>
     </body>
 </html>
