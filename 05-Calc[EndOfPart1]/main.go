@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"strconv"
+	"strings"
 
 	"github.com/fatih/color"
 	"github.com/sciter-sdk/go-sciter"
@@ -31,32 +33,53 @@ func main() {
 
 }
 
-func Operate(vals ...*sciter.Value) *sciter.Value {
-	sumval := 0
-	switch vals[2].String() {
-	case "+":
-		{
-			sumval = vals[0].Int() + vals[1].Int()
-		}
-	case "-":
-		{
-			sumval = vals[0].Int() - vals[1].Int()
-		}
-	case "*":
-		{
-			sumval = vals[0].Int() * vals[1].Int()
-		}
-	case "/":
-		{
-			sumval = vals[0].Int() / vals[1].Int()
-		}
-	default:
-		{
-			fmt.Println("undefined opertaion", vals[2].String())
-		}
-	}
-	fmt.Println("summation is ", sumval)
-	// sumString := fmt.Sprintf("%v", sumval)
+// Operate function just expects one parametre
+// mathamatic string containing both
+// operands and operator
+func Operate(val ...*sciter.Value) *sciter.Value {
 
-	return sciter.NewValue(sumval)
+	// Trim All space as we are taking
+	//  now input as string
+	trimmedString := val[0].String()
+
+	// if input empty or not
+	if strings.TrimSpace(trimmedString) == "" {
+		fmt.Println("Invalid input ")
+		return nil
+	}
+
+	opGroup := []string{"+", "-", "*", "/"}
+
+	for _, op := range opGroup {
+		if strings.Contains(trimmedString, op) {
+			fmt.Println("we found ", op, " operator in string")
+			inputString := strings.Split(trimmedString, op)
+			op1, _ := strconv.Atoi(inputString[0])
+			op2, _ := strconv.Atoi(inputString[1])
+			switch op {
+			case "+":
+				{
+					return sciter.NewValue(op1 + op2)
+				}
+			case "-":
+				{
+					return sciter.NewValue(op1 - op2)
+				}
+			case "/":
+				{
+					return sciter.NewValue(op1 / op2)
+				}
+			case "*":
+				{
+					return sciter.NewValue(op1 * op2)
+				}
+			default:
+				{
+					fmt.Println("Awesome !!! , but ... no operator found ")
+				}
+			}
+		}
+
+	}
+	return nil
 }

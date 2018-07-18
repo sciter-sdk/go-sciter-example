@@ -49,35 +49,29 @@
          <button.op>=</button>   <!-- 16 -->
        </div>
 
-       <p> Previous Press <label for="" #prev></label></p>
+       <p> Operator Found  <label for="" #prev></label></p>
 
        <script type="text/tiscript">
             
-            var root = view.root;
-            var current = 0;
-            var result = 0;
-            var opr = "y"
-            var prev  = "0"; 
+            var root = view.root;      
 
-            event click $(button.op) {
-                stdout.println("text", current);
-                current = self#input.text;                
+            event click $(button.op) {  
+              self#prev.text="" 
+              self#input.text= view.Operate(self#input.text)                  
             }
-            
+
             event click $(button.btn)
             {                       
-              if (self#input.text == "+" || self#input.text == "-"  
-              || self#input.text == "*"  ||self#input.text == "/" ) {     
-                  if (opr != "y"){                
-                    opr="y"
-                  }else{
-                    view.msgbox("Do operate on this input string")
-                    exit                                      
-                  }                   
-                  prev = self#this.text
+              if (this.text == "+" || this.text == "-"  
+               || this.text == "*" || this.text == "/" ) {     
+                  if (self#prev.text != "y"){                
+                    self#prev.text="y"                   
+                  }else{                                     
+                    self#input.text= view.Operate(self#input.text)                                
+                  }                        
               }
               self#input.text = self#input.text + this.text; 
-              view.msgbox("Function is still running")                 
+                         
             }
        </script>
 
