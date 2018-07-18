@@ -38,18 +38,15 @@
             padding: 0;
             box-shadow:  2dip 2dip 2dip rgba(100,100,100,0.6)
         }     
-        
         ul.sub-menu > li {
             padding: 2dip;
             border-bottom:  2px dotted #cccccc;
             color: #333333;
         }
-
         ul.menubar > li:hover > ul.sub-menu {                          
             display:block;
             background: #fff;           
         }     
-
         textarea{  
             position: absolute;
             top:16dip;
@@ -64,7 +61,7 @@
     <body>       
         
         <!-- Textarea to get input from user-->
-        <textarea cols="48" rows="24"></textarea>        
+        <textarea cols="48" rows="24" #data></textarea>        
 
         <!-- Simulating Menubar for notepad -->
         <div class="top-menu">            
@@ -73,6 +70,7 @@
                     File
                     <ul class="sub-menu">
                         <li #new>New</li>
+                        <li #open>Open</li>
                         <li #save>Save</li>
                         <li #exit>Exit</li>
                     </ul>
@@ -81,9 +79,28 @@
         </div>   
 
         <script type="text/tiscript">
+        
             event click $(#exit){
                 view.closeWindow()
             }
+        
+            event click $(#open){
+                const HTML_FILES = "Notepad Plus Minus (*.nppm)|*.nppm";    
+                var filepath = view.selectFile(#open, HTML_FILES , "Unnamed", "file", "File name to save:");
+                self#data.text = view.open(filepath)  
+            }
+
+            event click $(#save){
+                const HTML_FILES = "Notepad Plus Minus (*.nppm)|*.nppm";              
+                var filepath = view.selectFile(#save, HTML_FILES , "Unnamed", "file", "File name to save:");
+                view.save(filepath,self#data.text)           
+            }
+        
+            event click $(#new){
+                self#data.text = ""
+            }
+        
         </script>
+
     </body>
 </html>

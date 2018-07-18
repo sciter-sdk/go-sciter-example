@@ -1,6 +1,10 @@
 package main
 
 import (
+	"fmt"
+	"io/ioutil"
+	"os"
+	"strings"
 	"syscall"
 
 	"github.com/sciter-sdk/go-sciter"
@@ -19,6 +23,7 @@ func main() {
 	// registring methods
 	win.DefineFunction("closeWindow", closeApplication)
 	win.DefineFunction("save", save)
+	win.DefineFunction("open", open)
 
 	win.Show()
 	win.Run()
@@ -30,6 +35,42 @@ func closeApplication(vals ...*sciter.Value) *sciter.Value {
 }
 
 func save(vals ...*sciter.Value) *sciter.Value {
-	
+
+	fmt.Println("Saving Your Document")
+	path := vals[0]
+	doc := vals[1]
+	processedFilePath := strings.Replace(path.String(), "file://", "", 1)
+	file, fileCreationError := os.OpenFile(processedFilePath, os.O_CREATE|os.O_RDWR|os.O_TRUNC, os.ModePerm)
+
+	if fileCreationError != nil {
+		fmt.Println("failed to create a blank file ", fileCreationError.Error())
+		return nil
+	}
+
+	defer file.Close()
+
+	charCount, writeError := file.WriteString(doc.String())
+	if writeError != nil {
+		fmt.Println("failed to write on file due to : ", writeError.Error())
+		return nil
+	}
+	fmt.Println("chars written ", charCount)
+	fmt.Println("we got path as ", path.String())
 	return nil
+}
+
+func open(vals ...*sciter.Value) *sciter.Value {
+	fmt.Println("Saving Your Document")
+	path := vals[0]
+	processedFilePath := strings.Replace(path.String(), "file://", "", 1)
+
+	readBytes, readError := ioutil.ReadFile(processedFilePath)
+
+	if readError != nil {
+		fmt.Println("failed to write on file due to : ", readError.Error())
+		return nil
+	}
+	fmt.Println("chars written ", len(readBytes))
+	fmt.Println("we got path as ", path.String())
+	return sciter.NewValue(string(readBytes))
 }
