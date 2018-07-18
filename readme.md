@@ -26,3 +26,6 @@ Summation of the journey until.  It's a very simple calc which uses every thing 
 
 #### 06-BuiltinHTML
 It's not good if you have to load external html file. As you have to care about location of html file. But instead what if html is inside your gocode? . It's cool right!. This is examples is about how to embedded html in your go code.
+
+#### 07-notepadScratch
+Time to explore something new. This example contains code for extremely simple notepad. It just allows you to open file, write a new file , save it and exit the appliaction. But, Its a good example for those who want to make an application has to work with documents, right! of course.
