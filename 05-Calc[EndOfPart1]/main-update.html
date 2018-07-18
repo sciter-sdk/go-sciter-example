@@ -21,7 +21,7 @@
           div#buttons > * {
             display:block;
             size:*;
-            min-height:2em;
+            min-height: 2em;
             font-size: 4vh;
           }
 
@@ -42,10 +42,10 @@
          <button.btn>7</button>  <!-- 9 -->        
          <button.btn>8</button>  <!-- 10 -->        
          <button.btn>9</button>  <!-- 11 -->
-         <button.op>+</button>   <!-- 12 -->
-         <button.op>-</button>   <!-- 13 -->
-         <button.op>*</button>   <!-- 14 -->
-         <button.op>/</button>   <!-- 15 -->
+         <button.btn>+</button>   <!-- 12 -->
+         <button.btn>-</button>   <!-- 13 -->
+         <button.btn>*</button>   <!-- 14 -->
+         <button.btn>/</button>   <!-- 15 -->
          <button.op>=</button>   <!-- 16 -->
        </div>
 
@@ -56,43 +56,28 @@
             var root = view.root;
             var current = 0;
             var result = 0;
-            var opr = ""
+            var opr = "y"
             var prev  = "0"; 
 
             event click $(button.op) {
                 stdout.println("text", current);
-                current = self#input.text;
-
-                switch (this.text)
-                {                  
-                    case "+":  opr = "+"; self#input.text = ""; prev = "+"; break;
-                    case "-":  opr = "-"; self#input.text = ""; prev = "-"; break;
-                    case "*":  if (current == 0) current = 1; 
-                               opr = "*"; self#input.text = ""; prev = "*"; break;
-                    case "/":  if (current == 0) current = 1;
-                               opr = "/"; self#input.text = ""; prev = "/"; break;
-
-                    case "=":  current = self#input.text
-                        if (opr != "_") {
-                          result = view.Operate(toInteger(result),toInteger(current),opr);                      
-                          self#input.text = result;
-                          opr = "_";
-                          prev = "=";          
-                        }
-                        break;
-                }                    
+                current = self#input.text;                
             }
             
             event click $(button.btn)
-            {
-              if (prev == "+" || prev == "-"  || prev == "/" || prev == "*"  ||prev == "=") {
-                self#input.text = this.text       
-                prev = self#this.text                    
-              } else {                         
-                self#input.text = self#input.text + this.text;
-                prev = self#this.text
+            {                       
+              if (self#input.text == "+" || self#input.text == "-"  
+              || self#input.text == "*"  ||self#input.text == "/" ) {     
+                  if (opr != "y"){                
+                    opr="y"
+                  }else{
+                    view.msgbox("Do operate on this input string")
+                    exit                                      
+                  }                   
+                  prev = self#this.text
               }
-              stdout.println("text", current);  
+              self#input.text = self#input.text + this.text; 
+              view.msgbox("Function is still running")                 
             }
        </script>
 
