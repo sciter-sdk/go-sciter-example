@@ -46,13 +46,14 @@
             display:block;
             background: #fff;           
         }     
-        textarea{  
+        .textarea{  
             position: absolute;
             top:16dip;
             left:0dip;      
-            width: 295dip;      
             font-size: 14dip;     
-            background:antiquewhite;
+            background:#666666;
+            color:#acacac;
             border: none;           
-            overflow-y: auto;
+            overflow-wrap: break-word;
+            overflow-y: auto
         }

@@ -20,12 +20,8 @@ func main() {
 
 	win.OpenArchive(resources)
 
-	// var htbytes = make([]byte, 0, 1666)
-
-	win.SetMediaType("screen")
-
-	// csbytes := win.GetArchiveItem("style.css")
-	// win.SetCSS(string(csbytes), "/", "screen")
+	csbytes := win.GetArchiveItem("style.css")
+	sciter.AppendMasterCSS(string(csbytes))
 
 	htbytes := win.GetArchiveItem("notepad.htm")
 	win.LoadHtml(string(htbytes), "/")
