@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <style  src="style.css" />
+    </head>
+    <body>               
+        <!-- Textarea to get input from user-->
+        <textarea cols="48" rows="24" #data></textarea>        
+
+        <!-- Simulating Menubar for notepad -->
+        <div class="top-menu">            
+            <ul class="menubar">
+                <li>
+                    File
+                    <ul class="sub-menu">
+                        <li #new>New</li>
+                        <li #open>Open</li>
+                        <li #save>Save</li>
+                        <li #exit>Exit</li>
+                    </ul>
+                </li>                
+            </ul>
+        </div>   
+
+        <script type="text/tiscript">
+        
+            event click $(#exit){
+                view.closeWindow()
+            }
+        
+            event click $(#open){
+                const HTML_FILES = "Notepad Plus Minus (*.nppm)|*.nppm";    
+                var filepath = view.selectFile(#open, HTML_FILES , "Unnamed", "file", "File name to save:");
+                // incase of  file was not selected then
+                // function returns null
+                if (filepath){
+                    self#data.text = view.open(filepath)  
+                }
+            }
+
+            event click $(#save){
+                const HTML_FILES = "Notepad Plus Minus (*.nppm)|*.nppm";              
+                var filepath = view.selectFile(#save, HTML_FILES , "Unnamed", "file", "File name to save:");
+                view.save(filepath,self#data.text)           
+            }
+        
+            event click $(#new){
+                self#data.text = ""
+            }
+        
+        </script>
+
+    </body>
+</html>

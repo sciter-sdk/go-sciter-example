@@ -17,7 +17,19 @@ func main() {
 
 	// create a window using upper rect
 	win, _ := window.New(sciter.SW_MAIN|sciter.SW_CONTROLS|sciter.SW_ENABLE_DEBUG, rect)
-	win.LoadFile("./notepad.html")
+
+	win.OpenArchive(resources)
+
+	// var htbytes = make([]byte, 0, 1666)
+
+	win.SetMediaType("screen")
+
+	// csbytes := win.GetArchiveItem("style.css")
+	// win.SetCSS(string(csbytes), "/", "screen")
+
+	htbytes := win.GetArchiveItem("notepad.htm")
+	win.LoadHtml(string(htbytes), "/")
+
 	win.SetTitle("Notepad+-")
 
 	// registering methods
@@ -27,6 +39,7 @@ func main() {
 
 	win.Show()
 	win.Run()
+	win.CloseArchive()
 }
 
 func closeApplication(vals ...*sciter.Value) *sciter.Value {
