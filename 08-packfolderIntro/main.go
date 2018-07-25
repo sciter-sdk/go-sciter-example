@@ -19,12 +19,11 @@ func main() {
 	win, _ := window.New(sciter.SW_MAIN|sciter.SW_CONTROLS|sciter.SW_ENABLE_DEBUG, rect)
 
 	win.OpenArchive(resources)
-
-	csbytes := win.GetArchiveItem("style.css")
-	sciter.AppendMasterCSS(string(csbytes))
+	// sciter.AppendMasterCSS(string(csbytes))
 
 	htbytes := win.GetArchiveItem("notepad.htm")
-	win.LoadHtml(string(htbytes), "/")
+
+	win.LoadHtml(string(htbytes), "")
 
 	win.SetTitle("Notepad+-")
 
