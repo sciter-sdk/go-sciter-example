@@ -45,16 +45,17 @@ ul.menubar > li:hover > ul.sub-menu {
     display:block;
     background: #fff;           
 }     
-.textarea{  
+textarea#data{  
     position: absolute;
     display: block;
     top:16dip;
     left:0dip;      
     font-size: 14dip;     
     background-image:  none;
-    background-color:#c75050;
+    background-color:#a4afa3; 
     color:#acacac;
     border: none;           
     overflow-wrap: break-word;
     overflow-y: auto;
     white-space:pre-wrap; 
+}

@@ -18,9 +18,10 @@ func main() {
 	// create a window using upper rect
 	win, _ := window.New(sciter.SW_MAIN|sciter.SW_CONTROLS|sciter.SW_ENABLE_DEBUG, rect)
 
+	win.DefaultHandler()
 	win.OpenArchive(resources)
-	// sciter.AppendMasterCSS(string(csbytes))
 
+	// csbytes := win.GetArchiveItem("style.css")
 	htbytes := win.GetArchiveItem("notepad.htm")
 
 	win.LoadHtml(string(htbytes), "")
