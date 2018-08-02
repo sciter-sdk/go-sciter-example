@@ -1,14 +1,18 @@
+*{
+    padding: 0;
+    margin: 0;
+}
 
 .top-menu{
     position: absolute;
-    width: 300dip;
+    width: 100%;
     top: 0;
     left: 0;
     padding: 0;
     margin: 0;
 }
 ul.menubar{
-    width:  300dip;
+    width:  100%;
     background-color : #cccccc;            
     padding: 0  4px;   
     margin: 0;        
@@ -50,10 +54,11 @@ textarea#data{
     display: block;
     top:16dip;
     left:0dip;      
+    width: 100%;
     font-size: 14dip;     
     background-image:  none;
     background-color:#a4afa3; 
-    color:#acacac;
+    color:#292121;
     border: none;           
     overflow-wrap: break-word;
     overflow-y: auto;

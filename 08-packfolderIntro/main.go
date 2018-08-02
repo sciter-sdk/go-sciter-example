@@ -16,15 +16,10 @@ func main() {
 	rect := sciter.NewRect(100, 100, 300, 500)
 
 	// create a window using upper rect
-	win, _ := window.New(sciter.SW_MAIN|sciter.SW_CONTROLS|sciter.SW_ENABLE_DEBUG, rect)
+	win, _ := window.New(sciter.SW_MAIN|sciter.SW_CONTROLS|sciter.SW_RESIZEABLE, rect)
 
-	win.DefaultHandler()
-	win.OpenArchive(resources)
-
-	// csbytes := win.GetArchiveItem("style.css")
-	htbytes := win.GetArchiveItem("notepad.htm")
-
-	win.LoadHtml(string(htbytes), "")
+	win.SetResourceArchive(resources)
+	win.LoadFile("this://app/htdocs/notepad.htm")
 
 	win.SetTitle("Notepad+-")
 
