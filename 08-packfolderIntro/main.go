@@ -68,9 +68,7 @@ func open(vals ...*sciter.Value) *sciter.Value {
 	fmt.Println("Saving Your Document")
 	path := vals[0]
 	processedFilePath := strings.Replace(path.String(), "file://", "", 1)
-
 	readBytes, readError := ioutil.ReadFile(processedFilePath)
-
 	if readError != nil {
 		fmt.Println("failed to write on file due to : ", readError.Error())
 		return nil

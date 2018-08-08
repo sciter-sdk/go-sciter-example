@@ -29,3 +29,8 @@ It's not good if you have to load external html file. As you have to care about 
 
 #### [07-notepadScratch](https://go-sciter.mchampaneri.in/2018/07/simple-documnet-based-appliaction-with.html)
 Time to explore something new. This example contains code for extremely simple notepad. It just allows you to open file, write a new file , save it and exit the appliaction. But, Its a good example for those who want to make an application has to work with documents, right! of course.
+
+#### [08-packfolderIntro](https://go-sciter.mchampaneri.in/2018/08/use-packfolder-to-archive-your-resource.html)
+If you have gone through 06, it actully puts html/css code in go file. Which looks weird. Sciter-sdk comes with one utility called packfolder which can generate single archive for your resource folder in one of the supported output format. So, now there is no need to write your gui inside go code. You can use packfolder to use that code. 
+
+If you are confused what i am talking about, please see the code, it might make you more clear.
