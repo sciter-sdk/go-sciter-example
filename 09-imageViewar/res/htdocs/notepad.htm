@@ -1,47 +1,53 @@
-<html>
+<html window-frame="none">
     <head>
         <style>
             @import url(../styles/style.css);
         </style>
     </head>
     <body>              
-            <button #next .btn>Next</button> 
-            <button #previous .btn>Previous</button>
-            <img #image  src="in-memory:logo" >
+            <div class="navi">
+                <button #next .btn>Next</button> 
+                <button #previous .btn>Previous</button>
+            </div>
+            <img #image height="600px" width="auto" src="in-memory:logo" >
     </body>
 
-    <script type="text/tiscript">
-        
-        var root = view.root;  
+    <script type="text/tiscript">              
+              var root = view.root;      
 
         // on ready just load first image 
         // given by backend
         function self.ready() { 
-                var imgString = view.testImage()
+                var imgString = view.loadFirstImage()
                 var bytes = Bytes.fromString(imgString);
                 var img = Image.fromBytes(bytes);
-                self.bindImage("in-memory:logo",img);
-                self#input.text = img
+                self.bindImage("in-memory:logo",img);               
             }
 
         // Rebind in-memory to next image 
         // in queue [ or first-one if this was the last image ]
-        function nextImage(){
-
+        function nextImage(){          
+            var imgString = view.loadNextImage()
+            var bytes = Bytes.fromString(imgString);
+            var img = Image.fromBytes(bytes);
+            self.bindImage("in-memory:logo",img);  
         }
 
         
         // Rebind in-memory to next image 
         // in queue [ or first-one if this was the last image ]
-        function prevImage(){
-
+        function prevImage(){           
+            var imgString = view.loadPreviousImage()
+            var bytes = Bytes.fromString(imgString);
+            var img = Image.fromBytes(bytes);
+            self.bindImage("in-memory:logo",img);  
         }
 
         event click $(#next ){
             nextImage()
         }
 
-        event click $(#prev){
+        event click $(#previous){
             prevImage()
         }
     </script>
