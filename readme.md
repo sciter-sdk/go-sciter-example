@@ -34,3 +34,9 @@ Time to explore something new. This example contains code for extremely simple n
 If you have gone through 06, it actully puts html/css code in go file. Which looks weird. Sciter-sdk comes with one utility called packfolder which can generate single archive for your resource folder in one of the supported output format. So, now there is no need to write your gui inside go code. You can use packfolder to use that code. 
 
 If you are confused what i am talking about, please see the code, it might make you more clear.
+
+#### 09-image-viewer
+Image-viewer support png/jpg file to view. It autoloads every jpg/png file behind the scene and displays on screen existing in the same folder as executable.
+
+ Its image loading logic is written in golang while front-end is sciter.  UI may be create even better, but as this is just for example. 
+
