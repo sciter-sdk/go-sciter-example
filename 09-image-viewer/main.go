@@ -36,14 +36,14 @@ func main() {
 	findAndLoadImageFromCurrentDirectory()
 	// registering methods
 	win.DefineFunction("closeWindow", closeApplication)
-	win.DefineFunction("testImage", TestImage)
+	// win.DefineFunction("testImage", TestImage)
 
 	win.DefineFunction("loadFirstImage", LoadFirstImage)
 	win.DefineFunction("loadNextImage", LoadNextImage)
 	win.DefineFunction("loadPreviousImage", LoadPreviousImage)
 
 	win.SetResourceArchive(resources)
-	win.LoadFile("this://app/htdocs/notepad.htm")
+	win.LoadFile("this://app/htdocs/image-viewer.htm")
 
 	win.Show()
 	win.Run()
@@ -87,7 +87,10 @@ func findAndLoadImageFromCurrentDirectory() {
 	// and smooth
 	waitGroup.Add(1)
 	go func() {
-		for _, file := range files {
+		for i, file := range files {
+			if i == 0 {
+				continue
+			}
 			imgString := getImageString(file, this_dir)
 			if imgString != "" {
 				Images = append(Images, imgString)
@@ -105,9 +108,12 @@ func findAndLoadImageFromCurrentDirectory() {
 // image from Image array
 // to sciter
 func LoadFirstImage(vals ...*sciter.Value) *sciter.Value {
-	Index = 0
-	fmt.Println("Returning first image")
-	return sciter.NewValue(Images[0])
+	if len(Images) > 0 {
+		Index = 0
+		fmt.Println("Returning first image")
+		return sciter.NewValue(Images[0])
+	}
+	return sciter.NewValue(string("-"))
 }
 
 // LoadNextImage return image from
@@ -135,30 +141,6 @@ func LoadPreviousImage(vals ...*sciter.Value) *sciter.Value {
 	Index = len(Images) - 1
 	fmt.Println("Returning image on index by indexin zero ", Index, "for loadPrevious")
 	return sciter.NewValue(Images[0])
-}
-
-func TestImage(vals ...*sciter.Value) *sciter.Value {
-
-	fmt.Println("test image function called")
-
-	testFile, fileOpenError := os.Open("./9999999991_01.jpg")
-	if fileOpenError != nil {
-		fmt.Println("failed to open file %s", fileOpenError.Error())
-		return nil
-	}
-
-	// create a new buffer base on file size
-	fInfo, _ := testFile.Stat()
-	var size int64 = fInfo.Size()
-	buf := make([]byte, size)
-
-	// Reading image file in buffer
-	fReader := bufio.NewReader(testFile)
-	fReader.Read(buf)
-
-	// Convert file to base64
-	imgStrging := base64.StdEncoding.EncodeToString(buf)
-	return sciter.NewValue(imgStrging)
 }
 
 // getImageString accepts file and
@@ -195,3 +177,27 @@ func getImageString(file os.FileInfo, this_dir string) string {
 	}
 	return ""
 }
+
+// func TestImage(vals ...*sciter.Value) *sciter.Value {
+
+// 	fmt.Println("test image function called")
+
+// 	testFile, fileOpenError := os.Open(--somefix-image-path--)
+// 	if fileOpenError != nil {
+// 		fmt.Println("failed to open file %s", fileOpenError.Error())
+// 		return nil
+// 	}
+
+// 	// create a new buffer base on file size
+// 	fInfo, _ := testFile.Stat()
+// 	var size int64 = fInfo.Size()
+// 	buf := make([]byte, size)
+
+// 	// Reading image file in buffer
+// 	fReader := bufio.NewReader(testFile)
+// 	fReader.Read(buf)
+
+// 	// Convert file to base64
+// 	imgStrging := base64.StdEncoding.EncodeToString(buf)
+// 	return sciter.NewValue(imgStrging)
+// }

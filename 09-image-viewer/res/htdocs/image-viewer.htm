@@ -19,6 +19,10 @@
         // given by backend
         function self.ready() { 
                 var imgString = view.loadFirstImage()
+                if (imgString == "-"){
+                    view.msgbox(#alert, "No images found in this folder", "ImageViewer");
+                    return;
+                }
                 var bytes = Bytes.fromString(imgString);
                 var img = Image.fromBytes(bytes);
                 self.bindImage("in-memory:logo",img);               
