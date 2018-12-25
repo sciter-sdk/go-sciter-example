@@ -36,9 +36,9 @@ If you have gone through 06, it actully puts html/css code in go file. Which loo
 If you are confused what i am talking about, please see the code, it might make you more clear.
 
 #### 09-image-viewer
-Image-viewer support png/jpg file to view. It autoloads every jpg/png file behind the scene and displays on screen existing in the same folder as executable.
+Image-viewer support png/jpg file to view. It autoloads every jpg/png file behind the scene and displays on screen existing in the same folder as executable.Its image loading logic is written in golang while front-end is sciter.  UI may be create even better, but as this is just for example. 
 ![Image of Image-Viewer](https://github.com/mchampaneri/go-sciter-example/blob/master/09-image-viewer/image-viewer.png)
- Its image loading logic is written in golang while front-end is sciter.  UI may be create even better, but as this is just for example. 
+ 
 
 #### 10-screen-sefli
 Screen-sefli takes snapshot of screen according to provided cordinates.
