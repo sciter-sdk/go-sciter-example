@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <style>
+            @import url(../styles/style.css);
+        </style>
+    </head>
+    <body>              
+        <h1 style="color:#c58564">This will be your screen capture</h1> 
+        <input type="text" #x1>
+        <input type="text" #y1>
+        <input type="text" #x2>
+        <input type="text" #y2>
+        <button #snap>Take A Snap</button>
+    </body>
+
+    <script type="text/tiscript">             
+              event click $(#snap){
+                view.state = View.WINDOW_HIDDEN  
+                view.msgbox(#alert, self#x1.text)
+                view.snapNow(
+                    toInteger(self#x1.text),
+                    toInteger(self#y1.text), 
+                    toInteger(self#x2.text),
+                    toInteger(self#y2.text)
+                )
+
+                view.state = View.WINDOW_SHOWN   
+              }
+        
+    </script>
+</html>

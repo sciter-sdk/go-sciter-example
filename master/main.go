@@ -10,7 +10,7 @@ import (
 
 func main() {
 
-	rect := sciter.NewRect(100, 100, 300, 300)
+	rect := sciter.NewRect(250, 200, 300, 300)
 	window, windowsGenerateionError := window.New(sciter.SW_MAIN|sciter.SW_CONTROLS|sciter.SW_ENABLE_DEBUG, rect)
 
 	if windowsGenerateionError != nil {

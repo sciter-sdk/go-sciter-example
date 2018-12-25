@@ -1,0 +1,23 @@
+html 
+{ 
+  font:system;
+  background:transparent; 
+  overflow: hidden;
+}
+
+body{
+    background: rgba(200, 200, 200, 0.5);
+    overflow: hidden;
+}
+
+    .navi{
+        width: 100%;
+        background: #cfcfcf;
+        display: flex
+    }
+
+    .btn{
+        display: inline-block;
+        padding: 30px;
+        width: *;        
+    }
