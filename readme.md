@@ -40,3 +40,5 @@ Image-viewer support png/jpg file to view. It autoloads every jpg/png file behin
 
  Its image loading logic is written in golang while front-end is sciter.  UI may be create even better, but as this is just for example. 
 
+#### 10-screen-sefli
+Screen-sefli takes snapshot of screen according to provided cordinates.
