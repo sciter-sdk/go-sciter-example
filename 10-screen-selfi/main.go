@@ -15,13 +15,6 @@ import (
 	"github.com/sciter-sdk/go-sciter/window"
 )
 
-// All read images will
-// be stored in Images array
-// as base64 strings
-// It will be reparsed by sciter
-var rootElement *sciter.Element
-var err error
-
 func main() {
 	// make rect for window
 	rect := sciter.NewRect(0, 0, 800, 200)
@@ -36,12 +29,6 @@ func main() {
 	win.SetResourceArchive(resources)
 	win.LoadFile("this://app/htdocs/screen.htm")
 
-	rootElement, err = win.GetRootElement()
-	if err != nil {
-		fmt.Println(" failed to load root element")
-		return
-	}
-
 	win.Show()
 	win.Run()
 	win.CloseArchive()
@@ -52,17 +39,29 @@ func closeApplication(vals ...*sciter.Value) *sciter.Value {
 	return nil
 }
 
+// snapCalled is binding for sciter-Go
+// it calls takeASelfi function after
+// successfully getting required inputs
+// from sciter ...
 func snapCalled(vals ...*sciter.Value) *sciter.Value {
 
-	x1 := vals[0].Int()
-	y1 := vals[1].Int()
-	x2 := vals[2].Int()
-	y2 := vals[3].Int()
+	// If inputs are not exactly 4
+	// then something is wrong ...
+	if len(vals) == 4 {
+		x1 := vals[0].Int()
+		y1 := vals[1].Int()
+		x2 := vals[2].Int()
+		y2 := vals[3].Int()
+		takeASelfi(x1, y1, x2, y2)
+	}
 
-	takeASelfi(x1, y1, x2, y2)
 	return nil
 }
 
+// takeASefli takes two cordinates as input
+// creates a rectangle from those cordinates
+// and takes snaps of that rectanle and stores
+// it as a png image
 func takeASelfi(xi, yi, xe, ye int) {
 
 	sefliRect := image.Rect(xi, yi, xe, ye)

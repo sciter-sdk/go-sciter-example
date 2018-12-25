@@ -17,16 +17,21 @@
 
     <script type="text/tiscript">             
               event click $(#snap){
-                view.state = View.WINDOW_HIDDEN  
-                view.msgbox(#alert, self#x1.text)
-                view.snapNow(
-                    toInteger(self#x1.text),
-                    toInteger(self#y1.text), 
-                    toInteger(self#x2.text),
-                    toInteger(self#y2.text)
-                )
 
-                view.state = View.WINDOW_SHOWN   
+                view.state  = View.WINDOW_FULL_SCREEN
+                // Hidding application window
+                // view.state = View.WINDOW_HIDDEN  
+
+                // Calling snapNow function define in golang
+                //view.snapNow(
+                //    toInteger(self#x1.text),
+                //   toInteger(self#y1.text), 
+                //    toInteger(self#x2.text),
+                //    toInteger(self#y2.text)
+                //)
+
+                // showing appliction window agian
+                //view.state = View.WINDOW_SHOWN   
               }
         
     </script>
