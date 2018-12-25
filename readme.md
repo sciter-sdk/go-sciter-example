@@ -42,3 +42,4 @@ Image-viewer support png/jpg file to view. It autoloads every jpg/png file behin
 
 #### 10-screen-sefli
 Screen-sefli takes snapshot of screen according to provided cordinates.
+![Image of Screen-selfi](https://github.com/mchampaneri/go-sciter-example/blob/master/10-screen-selfi/selfi-sefli.png)
