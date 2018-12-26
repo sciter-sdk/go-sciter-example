@@ -1,0 +1,44 @@
+<html window-frame="none">
+    <head>
+        <style>
+            @import url(../styles/style.css);
+        </style>
+    </head>
+    <body>              
+        <h1 style="color:#c58564">Provide cordinates</h1>      
+        <br>
+        <br>
+        <button #snap>Take A Snap</button>
+    </body>
+
+    <script type="text/tiscript">     
+        
+
+                event click $(#snap){
+
+                view.window({
+                    url :"this://app/htdocs/screen.htm",
+                    state :View.WINDOW_FULL_SCREEN,
+                    type :View.POPUP_WINDOW,
+                    parameters : { 
+                        mainView: view,                      
+                    }
+                })
+
+                view.state  = View.WINDOW_HIDDEN               
+
+                // Calling snapNow function define in golang
+                //view.snapNow(
+                //    toInteger(self#x1.text),
+                //   toInteger(self#y1.text), 
+                //    toInteger(self#x2.text),
+                //    toInteger(self#y2.text)
+                //)
+
+                // showing appliction window agian
+                
+              }
+
+        
+    </script>
+</html>

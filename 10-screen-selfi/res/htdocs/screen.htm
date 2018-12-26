@@ -1,38 +1,50 @@
-<html>
+<html window-frame="transparent">
     <head>
         <style>
             @import url(../styles/style.css);
         </style>
     </head>
-    <body>              
-        <h1 style="color:#c58564">Provide cordinates</h1> 
-        X1<input type="text" #x1>
-        Y1<input type="text" #y1>
-        X2<input type="text" #x2>
-        Y2<input type="text" #y2>
-        <br>
-        <br>
-        <button #snap>Take A Snap</button>
+    <body style="background:rgba(255,255,255,0.6)">             
+        <div #snapZone style="height:*; width:*; ">
+            <div #snapArea>Content should go below</h3>         
+        </div>
+        <div>
+        <i #close style="color:#fff">X</i>
+        </div>   
+        <button #snapIt>Snap</button>
     </body>
 
     <script type="text/tiscript">             
-              event click $(#snap){
 
-                view.state  = View.WINDOW_FULL_SCREEN
-                // Hidding application window
-                // view.state = View.WINDOW_HIDDEN  
+        var x1,y1,x2,y2;
+        var i = 0;
 
-                // Calling snapNow function define in golang
-                //view.snapNow(
-                //    toInteger(self#x1.text),
-                //   toInteger(self#y1.text), 
-                //    toInteger(self#x2.text),
-                //    toInteger(self#y2.text)
-                //)
+        event click $(#snapZone){                       
+            if (i % 2 == 0){
+                (x1,y1) = view.cursorLocation();
+                view.msgbox(#alert,"first cord loaded");
+                i++;
+            } else{
+                (x2,y2) = view.cursorLocation();
+                view.msgbox(#alert,"second cord loaded");
+                i++;
+            }
+            if (x1 != 0 && x2 != 0){             
+                $(#snapArea).$replace( <div style="position:absolute;top:{y1};left:{x1};height:{y2-y1}dip;width:{x2-x1}dip;background:rgba(255,255,255,0.3);"></div>)
+            }
+        }
 
-                // showing appliction window agian
-                //view.state = View.WINDOW_SHOWN   
-              }
+            event click $(#close){              
+                view.parameters.mainView.state = view.WINDOW_SHOWN                  
+                view.close()
+            }
+            event click $(#snapIt){
+                view.state  = View.WINDOW_HIDDEN  
+                view.parameters.mainView.snapNow(x1,y1,x2,y2)  
+                view.parameters.mainView.state = view.WINDOW_SHOWN                  
+                view.close()
+            }
+           
         
     </script>
 </html>
