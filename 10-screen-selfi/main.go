@@ -23,8 +23,10 @@ func main() {
 	win, _ := window.New(sciter.SW_MAIN|sciter.SW_CONTROLS|
 		sciter.SW_ENABLE_DEBUG, rect)
 
+	// attaching functions
 	win.DefineFunction("snapNow", snapCalled)
 	win.DefineFunction("closeApp", closeApplication)
+
 	win.SetTitle("ScreenSefli+-")
 
 	win.SetResourceArchive(resources)
@@ -53,7 +55,7 @@ func snapCalled(vals ...*sciter.Value) *sciter.Value {
 		y1 := vals[1].Int()
 		x2 := vals[2].Int()
 		y2 := vals[3].Int()
-		fmt.Println(x1, y2, x2, y2, " are the cordinates")
+		// fmt.Println(x1, y2, x2, y2, " are the cordinates")
 		takeASelfi(x1, y1, x2, y2)
 	}
 
@@ -66,8 +68,8 @@ func snapCalled(vals ...*sciter.Value) *sciter.Value {
 // it as a png image
 func takeASelfi(xi, yi, xe, ye int) {
 
-	sefliRect := image.Rect(xi, yi, xe, ye)
-	sefliData, err := screenshot.CaptureRect(sefliRect)
+	selfiRect := image.Rect(xi, yi, xe, ye)
+	selfiData, err := screenshot.CaptureRect(selfiRect)
 	if err != nil {
 		fmt.Println("We failed to take a sefli. sorry ....", err.Error())
 		return
@@ -78,7 +80,7 @@ func takeASelfi(xi, yi, xe, ye int) {
 	if err != nil {
 		panic(err)
 	}
-	err = png.Encode(f, sefliData)
+	err = png.Encode(f, selfiData)
 	if err != nil {
 		panic(err)
 	}

@@ -1,0 +1,43 @@
+
+  @font-face {
+    font-family: MyAwesome;
+    src: url(../fonts/fontawesome-webfont.ttf);
+    }
+
+
+html 
+{ 
+  font:system;
+  background:transparent; 
+  overflow: hidden;
+  border: 1px solid #cfcfcc;
+}
+
+
+.title-bar{
+    position:  absolute;
+    top: 0;
+    left: 0;
+    width: *;
+    background: rgba(100, 100, 100, 0.8);
+    font-size:12dip;
+    padding:0dip 15dip;
+  }
+
+.title-bar > .left{
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+
+.title-bar > .right{
+    float: right;
+    padding: 0;
+    margin: 0;
+}
+
+.fa {
+    font: 19dip MyAwesome;
+    padding:0;
+    margin:0;
+}

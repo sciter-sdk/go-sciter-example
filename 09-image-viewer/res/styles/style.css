@@ -1,23 +1,34 @@
-html 
-{ 
-  font:system;
-  background:transparent; 
-  overflow: hidden;
+@font-face {
+    font-family: MyAwesome;
+    src: url(../fonts/fontawesome-webfont.ttf);
 }
 
-body{
-    background: rgba(0,0,0,0.4);
+html {
+    font: system;
+    background: transparent;
     overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
-    .navi{
-        width: 100%;
-        background: #cfcfcf;
-        display: flex
-    }
+body {
+    background: rgba(71, 70, 70, 0.7);
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    box-shadow: inset -12px -6px 60px -16px rgba(0,0,0,0.75);
+}
 
-    .btn{
-        display: inline-block;
-        padding: 30px;
-        width: *;        
-    }
+.navi {
+    width: 100%;
+    background: rgba(0, 0, 0, 1);
+    padding: 3dip 20dip;
+}
+
+.btn{
+    font: 12pt MyAwesome;
+    border: none;
+    border-radius:  20pt;
+    background: transparent;
+    color: #ffffff;
+}

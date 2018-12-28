@@ -1,20 +1,19 @@
 <html window-frame="none">
-    <head>
-        <style>
-            @import url(../styles/style.css);
+
+<head>
+    <style>
+        @import url(../styles/style.css);
         </style>
-    </head>
-    <body>              
-        <h1 style="color:#c58564">Provide cordinates</h1>      
-        <br>
-        <br>
-        <button #snap>Take A Snap</button>
-    </body>
+</head>
 
-    <script type="text/tiscript">     
-        
+<body>
+    <button #snap>Take A Snap</button>
+</body>
 
-                event click $(#snap){
+<script type="text/tiscript">
+
+
+    event click $(#snap){
 
                 view.window({
                     url :"this://app/htdocs/screen.htm",
@@ -41,4 +40,5 @@
 
         
     </script>
+
 </html>

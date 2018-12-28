@@ -23,8 +23,7 @@ func main() {
 	rect := sciter.NewRect(0, 0, 800, 600)
 
 	// create a window using upper rect
-	win, _ := window.New(sciter.SW_MAIN|sciter.SW_CONTROLS|
-		sciter.SW_RESIZEABLE|sciter.SW_ENABLE_DEBUG, rect)
+	win, _ := window.New(sciter.SW_MAIN|sciter.SW_ENABLE_DEBUG, rect)
 
 	win.SetTitle("ImageViewar+-")
 

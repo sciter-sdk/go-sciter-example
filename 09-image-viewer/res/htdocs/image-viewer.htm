@@ -1,58 +1,88 @@
-<html window-frame="none">
-    <head>
-        <style>
-            @import url(../styles/style.css);
+<html window-frame="transparent">
+
+<head>
+    <style>
+        @import url(../styles/style.css);
         </style>
-    </head>
-    <body>              
-            <div class="navi">
-                <button #next .btn>Next</button> 
-                <button #previous .btn>Previous</button>
-            </div>
-            <img #image height="600px" width="auto" src="in-memory:logo" >
-    </body>
 
-    <script type="text/tiscript">              
-              var root = view.root;      
+    <script type="text/tiscript">
+    var root = view.root;      
 
-        // on ready just load first image 
-        // given by backend
-        function self.ready() { 
-                var imgString = view.loadFirstImage()
-                if (imgString == "-"){
-                    view.msgbox(#alert, "No images found in this folder", "ImageViewer");
-                    return;
-                }
-                var bytes = Bytes.fromString(imgString);
-                var img = Image.fromBytes(bytes);
-                self.bindImage("in-memory:logo",img);               
-            }
+// on ready just load first image 
+// given by backend
+function self.ready() { 
+      var imgString = view.loadFirstImage()
+      view.state = view.WINDOW_FULL_SCREEN
+     if (imgString == "-"){
+          view.msgbox(#alert, "No images found in this folder", "ImageViewer");
+          return;
+      }
+    var bytes = Bytes.fromString(imgString);
+      var img = Image.fromBytes(bytes);
+      self.bindImage("in-memory:logo",img);               
+  }
 
-        // Rebind in-memory to next image 
-        // in queue [ or first-one if this was the last image ]
-        function nextImage(){          
-            var imgString = view.loadNextImage()
-            var bytes = Bytes.fromString(imgString);
-            var img = Image.fromBytes(bytes);
-            self.bindImage("in-memory:logo",img);  
-        }
+// Rebind in-memory to next image 
+// in queue [ or first-one if this was the last image ]
+function nextImage(){          
+  var imgString = view.loadNextImage()
+  var bytes = Bytes.fromString(imgString);
+  var img = Image.fromBytes(bytes);
+  self.bindImage("in-memory:logo",img);  
+}
 
-        
-        // Rebind in-memory to next image 
-        // in queue [ or first-one if this was the last image ]
-        function prevImage(){           
-            var imgString = view.loadPreviousImage()
-            var bytes = Bytes.fromString(imgString);
-            var img = Image.fromBytes(bytes);
-            self.bindImage("in-memory:logo",img);  
-        }
 
-        event click $(#next ){
-            nextImage()
-        }
+// Rebind in-memory to next image 
+// in queue [ or first-one if this was the last image ]
+function prevImage(){           
+  var imgString = view.loadPreviousImage()
+  var bytes = Bytes.fromString(imgString);
+  var img = Image.fromBytes(bytes);
+  self.bindImage("in-memory:logo",img);  
+}
 
-        event click $(#previous){
-            prevImage()
-        }
-    </script>
+event click $(#next ){
+  nextImage()
+}
+
+event click $(#previous){
+  prevImage()
+}
+
+self.on("mousewheel",function OnViewWheel(evt)
+{
+  if(evt.wheelDelta > 0 )
+  {
+     var cur = $(#image).attributes["width"]
+     if (cur < 800) {
+        $(#image).attributes["width"] = toInteger(cur) + 2* (evt.wheelDelta)
+     }  
+  }
+  else if(evt.wheelDelta < 0 )
+  {
+     var cur = $(#image).attributes["width"]
+     if (cur > 10) {
+        $(#image).attributes["width"] = toInteger(cur) - 2* (evt.wheelDelta) 
+     }
+  }
+});
+
+</script>
+</head>
+
+<body>
+    <div class="navi" role="window-caption">
+        <span style="color: #fff; font-size: 12pt;font-family: system">
+            Image viewer
+        </span>
+        <button #previous .btn>&#xf048;</button>
+        <button #next .btn>&#xf051;</button>
+        <button .btn role="window-close">&#xf00d;</button>
+    </div>
+    <div style="flow:horizontal;horizontal-align:center;">
+        <img #image height="auto" width="600" src="in-memory:logo" style="box-shadow: 9px 7px 59px 12px rgba(0,0,0,0.75);">
+    </div>
+</body>
+
+
 </html>
