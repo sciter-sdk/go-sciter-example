@@ -41,12 +41,26 @@ function prevImage(){
   self.bindImage("in-memory:logo",img);  
 }
 
+// function blurImage makes image blury
+// by reading it agagin from the file 
+// and processing its byte at golang 
+function blurThisImage(){
+    var imgString = view.blurCurrentImage()
+    var bytes = Bytes.fromString(imgString);
+    var img = Image.fromBytes(bytes);
+    self.bindImage("in-memory:logo",img);  
+}
+
 event click $(#next ){
   nextImage()
 }
 
 event click $(#previous){
   prevImage()
+}
+
+event click $(#blur){
+    blurThisImage()
 }
 
 self.on("mousewheel",function OnViewWheel(evt)
@@ -75,8 +89,9 @@ self.on("mousewheel",function OnViewWheel(evt)
         <span style="color: #fff; font-size: 12pt;font-family: system">
             Image viewer
         </span>
-        <button #previous .btn>&#xf048;</button>
-        <button #next .btn>&#xf051;</button>
+        <button .btn #previous>&#xf048;</button>
+        <button .btn #next >&#xf051;</button>
+        <button .btn #blur>blur</button>
         <button .btn role="window-close">&#xf00d;</button>
     </div>
     <div style="flow:horizontal;horizontal-align:center;">

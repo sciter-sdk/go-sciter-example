@@ -2,8 +2,10 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"encoding/base64"
 	"fmt"
+	"image/png"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -11,12 +13,14 @@ import (
 	"sync"
 	"syscall"
 
+	"github.com/disintegration/imaging"
 	"github.com/sciter-sdk/go-sciter"
 	"github.com/sciter-sdk/go-sciter/window"
 )
 
 var Index int       // Stores current index of image
 var Images []string // Images stores base64 string of images
+var Files []os.FileInfo
 
 func main() {
 	// make rect for window
@@ -34,6 +38,7 @@ func main() {
 	win.DefineFunction("loadFirstImage", LoadFirstImage)
 	win.DefineFunction("loadNextImage", LoadNextImage)
 	win.DefineFunction("loadPreviousImage", LoadPreviousImage)
+	win.DefineFunction("blurCurrentImage", blurCurrentImage)
 	win.DefineFunction("closeWindow", closeApplication)
 
 	// Getting data from archive
@@ -73,6 +78,7 @@ func findAndLoadImageFromCurrentDirectory() {
 		imgString := getImageString(files[0], thisDir)
 		if imgString != "" {
 			Images = append(Images, imgString)
+			Files = append(Files, files[0])
 		}
 	}
 
@@ -88,6 +94,7 @@ func findAndLoadImageFromCurrentDirectory() {
 			imgString := getImageString(file, thisDir)
 			if imgString != "" {
 				Images = append(Images, imgString)
+				Files = append(Files, file)
 			}
 		}
 		waitGroup.Done()
@@ -129,6 +136,13 @@ func LoadPreviousImage(vals ...*sciter.Value) *sciter.Value {
 	return sciter.NewValue(Images[0])
 }
 
+func blurCurrentImage(vals ...*sciter.Value) *sciter.Value {
+	cwd, _ := os.Getwd()
+	imageString := Blur(Files[Index], cwd)
+	thisString := sciter.NewValue(imageString)
+	return thisString
+}
+
 // getImageString returns base64 string
 // of file provided as input
 func getImageString(file os.FileInfo, thisDir string) string {
@@ -159,3 +173,69 @@ func getImageString(file os.FileInfo, thisDir string) string {
 	}
 	return ""
 }
+
+func Blur(file os.FileInfo, thisDir string) string {
+
+	imageFile, imageFileErr := os.Open(filepath.Join(thisDir, file.Name()))
+	if imageFileErr != nil {
+		fmt.Println("failed to load image file")
+		return ""
+	}
+	fmt.Println("image file loaded")
+	img, imgErr := png.Decode(imageFile)
+	if imgErr != nil {
+		fmt.Println("failed to decode image ", imgErr.Error())
+	}
+	img2 := imaging.AdjustBrightness(img, -20)
+	mybuffer := new(bytes.Buffer)
+	png.Encode(mybuffer, img2)
+	fmt.Println("blurred retured")
+	return base64.StdEncoding.EncodeToString(mybuffer.Bytes())
+
+}
+
+// BlurImage
+// func Blur(file os.FileInfo, thisDir string) string {
+// 	fmt.Println("blurring image")
+// 	imageFile, imageFileErr := os.Open(filepath.Join(thisDir, file.Name()))
+// 	if imageFileErr != nil {
+// 		fmt.Println("failed to load image file")
+// 		return ""
+// 	}
+// 	srcImage, _, err := image.Decode(imageFile)
+// 	if err != nil {
+// 		fmt.Println("failed to load decode image")
+// 		return ""
+// 	}
+// 	dstImage := imaging.Blur(srcImage, 0.5)
+// 	tempDir := os.TempDir()
+// 	name, _ := uuid.NewV4()
+// 	tempFile, errTemp := os.OpenFile(path.Join(tempDir, name.String()),
+// 		os.O_CREATE|os.O_RDWR, os.ModeTemporary)
+
+// 	if errTemp != nil {
+// 		fmt.Println("failed to create temp file to store image ")
+// 		return ""
+// 	}
+// 	encodingFialed := png.Encode(tempFile, dstImage)
+// 	if encodingFialed != nil {
+// 		fmt.Println("failed to encode file to return", encodingFialed.Error())
+// 		return ""
+// 	}
+
+// 	state, statError := tempFile.Stat()
+// 	if statError != nil {
+// 		fmt.Println("failed to get error state ", statError.Error())
+// 		return ""
+// 	}
+
+// 	size := state.Size()
+// 	buf := make([]byte, size)
+
+// 	// Reading image file in buffer
+// 	fReader := bufio.NewReader(imageFile)
+// 	fReader.Read(buf)
+// 	imgStrging := base64.StdEncoding.EncodeToString(buf)
+// 	fmt.Println(imgStrging)
+// 	return imgStrging
+// }
