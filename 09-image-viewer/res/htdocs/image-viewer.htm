@@ -41,16 +41,6 @@ function prevImage(){
   self.bindImage("in-memory:logo",img);  
 }
 
-// function blurImage makes image blury
-// by reading it agagin from the file 
-// and processing its byte at golang 
-function blurThisImage(){
-    var imgString = view.blurCurrentImage()
-    var bytes = Bytes.fromString(imgString);
-    var img = Image.fromBytes(bytes);
-    self.bindImage("in-memory:logo",img);  
-}
-
 event click $(#next ){
   nextImage()
 }
@@ -59,27 +49,7 @@ event click $(#previous){
   prevImage()
 }
 
-event click $(#blur){
-    blurThisImage()
-}
 
-self.on("mousewheel",function OnViewWheel(evt)
-{
-  if(evt.wheelDelta > 0 )
-  {
-     var cur = $(#image).attributes["width"]
-     if (cur < 800) {
-        $(#image).attributes["width"] = toInteger(cur) + 2* (evt.wheelDelta)
-     }  
-  }
-  else if(evt.wheelDelta < 0 )
-  {
-     var cur = $(#image).attributes["width"]
-     if (cur > 10) {
-        $(#image).attributes["width"] = toInteger(cur) - 2* (evt.wheelDelta) 
-     }
-  }
-});
 
 </script>
 </head>
@@ -91,7 +61,7 @@ self.on("mousewheel",function OnViewWheel(evt)
         </span>
         <button .btn #previous>&#xf048;</button>
         <button .btn #next >&#xf051;</button>
-        <button .btn #blur>blur</button>
+      
         <button .btn role="window-close">&#xf00d;</button>
     </div>
     <div style="flow:horizontal;horizontal-align:center;">

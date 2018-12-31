@@ -38,7 +38,7 @@ func main() {
 	win.DefineFunction("loadFirstImage", LoadFirstImage)
 	win.DefineFunction("loadNextImage", LoadNextImage)
 	win.DefineFunction("loadPreviousImage", LoadPreviousImage)
-	win.DefineFunction("blurCurrentImage", blurCurrentImage)
+	// win.DefineFunction("blurCurrentImage", blurCurrentImage)
 	win.DefineFunction("closeWindow", closeApplication)
 
 	// Getting data from archive
