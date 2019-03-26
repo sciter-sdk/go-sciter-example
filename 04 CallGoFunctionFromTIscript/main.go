@@ -17,7 +17,7 @@ func main() {
 		color.RedString("Failed to generate sciter window ", windowsGenerateionError.Error())
 	}
 
-	uiLoadingError := window.LoadFile("./main.html")
+	uiLoadingError := window.LoadFile("./main-update.html")
 	if uiLoadingError != nil {
 		color.RedString("Failed to load ui file ", uiLoadingError.Error())
 	}
