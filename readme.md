@@ -49,4 +49,4 @@ Screen-sefli takes snapshot of screen according to provided cordinates.
 ## Youtube
 
 ##### [Create GUI application in go using sciter-sdk](https://www.youtube.com/playlist?list=PLub5C2vM5SjKvkbFfposhyg1V2gpXnviM)
-[Video tutorials on go-sciter for beginners](https://www.youtube.com/playlist?list=PLub5C2vM5SjKvkbFfposhyg1V2gpXnviM)
+Video tutorials on go-sciter for beginners
