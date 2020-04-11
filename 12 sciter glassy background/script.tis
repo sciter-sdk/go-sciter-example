@@ -1,0 +1,32 @@
+/* We will handle button clicks in script.tis 
+[ here ] */
+
+var turns = 0
+
+// Handle click event of button
+event click $(button){
+    // we have to chage text value of button 
+    // on click of that button
+
+     // here game is two player game
+     // so we can use %2 operation to define
+     // whose turn is 
+
+
+     // one more condition 
+     // "Same button can not clicked twice"
+     // lets make some decoration
+
+     // once button is clicked it should be disabled
+
+     if(this.text == ""){
+      if(turns%2){
+      this.text = "X" // here this means button that 
+                    // has been clicked
+      }else{
+         this.text = "Y"
+      }
+      this.state.disabled = true;
+     turns++;
+     }
+}

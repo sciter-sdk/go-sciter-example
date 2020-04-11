@@ -44,6 +44,12 @@ Image-viewer support png/jpg file to view. It autoloads every jpg/png file behin
 Screen-sefli takes snapshot of screen according to provided cordinates.
 ![Image of Screen-selfi](https://github.com/mchampaneri/go-sciter-example/blob/master/10-screen-selfi/selfi-sefli.png)
 
+#### 11-custome-layout
+
+#### 12-Sciter-glassy-background
+Sciter now supports glassy backgroun as well. You can give  a modern glassy UI look to your appliaction.
+
+
 -----
 
 ## Youtube playlists
