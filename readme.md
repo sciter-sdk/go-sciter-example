@@ -49,7 +49,9 @@ Screen-sefli takes snapshot of screen according to provided cordinates.
 #### 12-Sciter-glassy-background
 Sciter now supports glassy backgroun as well. You can give  a modern glassy UI look to your appliaction.
 
-
+#### 13-Sciter-window-frame-extended
+You can customize titlebar. window-frame='exteded' removes title bar and puts windows controls in appliction body.
+![Image] (https://github.com/mchampaneri/go-sciter-example/blob/master/13%20sciter%20window-frame-extend/cover-Pic.png)
 -----
 
 ## Youtube playlists
