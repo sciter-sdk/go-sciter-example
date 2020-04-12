@@ -37,12 +37,12 @@ If you are confused what i am talking about, please see the code, it might make 
 
 #### 09-image-viewer
 Image-viewer support png/jpg file to view. It autoloads every jpg/png file behind the scene and displays on screen existing in the same folder as executable.Its image loading logic is written in golang while front-end is sciter.  UI may be create even better, but as this is just for example. 
-![Image of Image-Viewer](https://github.com/mchampaneri/go-sciter-example/blob/master/09-image-viewer/image-viewer.png)
+![Image of Image-Viewer](https://github.com/mchampaneri/go-sciter-example/blob/master/09%20image-viewer/image-viewer.png)
  
 
 #### 10-screen-sefli
 Screen-sefli takes snapshot of screen according to provided cordinates.
-![Image of Screen-selfi](https://github.com/mchampaneri/go-sciter-example/blob/master/10-screen-selfi/selfi-sefli.png)
+![Image of Screen-selfi](https://github.com/mchampaneri/go-sciter-example/blob/master/10%20screen-selfi/58c39b14-8eb5-457f-8bc5-504cb35bb3bb.png)
 
 #### 11-custome-layout
 
