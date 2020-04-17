@@ -52,10 +52,19 @@ Sciter now supports glassy backgroun as well. You can give  a modern glassy UI l
 #### 13-Sciter-window-frame-extended
 You can customize titlebar. window-frame='exteded' removes title bar and puts windows controls in appliction body.
 ![Image](https://github.com/mchampaneri/go-sciter-example/blob/master/13%20sciter%20window-frame-extend/cover-Pic.png)
------
 
 #### 14-Add-button-with-onclick-event-binding-from-golang
 You can add any element with your desired attirubtes and event handing from golang side. How!, see this example.
+
+
+#### 15-Create-new-window-on-button-click
+It may happened that your application need multiple window to carry out certain task, for example to take profile pic you need a separate window with access to webcam that can take pic and the pass data to main window are application itself.
+Here is simple example of how you can create/open new window with button click
+
+
+-----
+
+
 ## Youtube playlists
 
 #### [Create GUI application in go using sciter-sdk](https://www.youtube.com/playlist?list=PLub5C2vM5SjKvkbFfposhyg1V2gpXnviM)
