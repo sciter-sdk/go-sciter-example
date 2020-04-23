@@ -10,7 +10,7 @@ import (
 func main() {
 
 	rect := sciter.NewRect(100, 100, 600, 400)
-	window, windowCreationErr := window.New(sciter.SW_MAIN|sciter.SW_CONTROLS|sciter.SW_ENABLE_DEBUG, rect)
+	window, windowCreationErr := window.New(sciter.SW_MAIN|sciter.SW_TITLEBAR|sciter.SW_ENABLE_DEBUG, rect)
 
 	if windowCreationErr != nil {
 		fmt.Errorf("Could not create sciter window : %s",
