@@ -61,6 +61,9 @@ You can add any element with your desired attirubtes and event handing from gola
 It may happened that your application need multiple window to carry out certain task, for example to take profile pic you need a separate window with access to webcam that can take pic and the pass data to main window are application itself.
 Here is simple example of how you can create/open new window with button click
 
+#### 16-Add-menu-in-menubar-mac-os-x
+You can add menu in menubar of mac-os-x. Not using sciter or golang{direclty}. But Cgo comes at rescaue here. You can add menu using objective-c code using Cocoa framework at cgo.
+
 
 -----
 
